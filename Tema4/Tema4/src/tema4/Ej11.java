@@ -19,5 +19,14 @@ public class Ej11 {
          System.out.println("Introduzca los minutos");
        int minutos = sc.nextInt();
                  
+       int cambio = hora * 3600;
+       int cambio2 = minutos * 60;
+       int total = cambio + cambio2;
+       
+       int resta = 86400 - total;
+       
+       System.out.println("Quedan " + resta + " Segundos para la media noche");
+       
+       
      }
 }
