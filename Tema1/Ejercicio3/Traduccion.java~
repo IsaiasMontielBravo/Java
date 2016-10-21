@@ -1,0 +1,17 @@
+/**
+ * Muestra por pantalla la frase Nombre,calle,numero
+ *
+ * @author isaias
+ */
+
+public class Traduccion { // Clase principal
+  public static void main(String[] args) {
+    System.out.println("Lunes\tMartes\tMiercoles\tJueves\tViernes");
+    System.out.println("Fol\tProgr\tSin\tProg\tBD");
+    System.out.println("Fol\tProg\tSin\tProg\tBD");
+    System.out.println("Fol\tProg\tSin\tProgr\tBD");
+    System.out.println("Prog\tProg\tSin\tED\tProg");
+    System.out.println("ED\tBD\tLm\tLm\tSin");
+    System.out.println("ED\tBD\tLm\tLm\tSin");
+     }
+}
