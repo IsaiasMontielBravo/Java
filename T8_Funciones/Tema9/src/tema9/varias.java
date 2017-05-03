@@ -369,4 +369,235 @@ public static int agregaPorDelante(int num, int dig) {
         numUno = numUno + numDos;
         return numUno;
     }
+    /**
+    * Pasa de decimal a binario.
+    *
+    * @param num un número entero positivo
+    * @return array
+    */
+    //Pasa de decimal a binario/////////////////////////////////////////
+    public static int[] decimalAbinario(int num) {
+        int resultado = num;
+        int resto = 0;
+        int binario = 0;
+        int contador = 0;
+        
+        //Averigua la longitud del array
+        if (num > 8) {
+            while (num > 0){
+                num = num /2;
+                contador++;
+            }
+        } else {
+            contador = 5;
+        }
+        
+        //Inicializa el array
+        int[] array = new int [contador];
+        int x = 0;
+        
+        num = resultado;
+        while(resultado > 0) {
+            resultado = num / 2;
+            resto = num % 2;
+            array[x] = resto;
+            x++;
+            num = num/2;
+            
+        }
+        
+        
+        //Da vuelta el array
+        contador = contador - 1;
+        for(int i = 0; i < contador; i++) {
+            int aux = array[i];
+            array[i] = array[contador];
+            array[contador] = aux;
+            contador--;
+        }
+        
+        return array;
+    }
+    
+    /**
+    * Pasa de binario a decimal.
+    *
+    * @param num un número entero positivo
+    * @return un entero de tipo int
+    */
+    //Pasa de binario a decimal/////////////////////////////////////////
+    public static int binarioAdecimal(int num) {
+        int contador = varias.cuentaDigitos(num);
+        contador--;
+        int decimal = 0;
+        int i = 1;
+        //Crea el decimal
+        for(int x = contador; x >= 0; x-- ){
+            decimal = varias.digitoN(num, x) * i + decimal;
+            i = i * 2;
+        }
+        return decimal;
+    }
+    
+    /**
+    * Pasa de binario a octal.
+    *
+    * @param x String de número
+    * @return 
+    */
+    //Pasa de binario a octal/////////////////////////////////////////
+    public static int[] binarioAoctal(int[] x) {
+       //Crea el array para el hexadecimal
+       int longitud = x.length;
+       while ((longitud%3 != 0)) {
+            longitud++;
+       }
+        longitud = longitud / 3;
+        int[] arrayOctal = new int[longitud];
+        
+       //Forma los grupos
+       int indice = x.length - 1;
+       int indiceOctal = 0;
+       int grupo = 0;
+       
+       while(indice >= 3) {
+            grupo = 0;
+            for(int i = indice - 2; i <= indice; i++) {       
+                grupo = grupo * 10 + x[i]; 
+            }
+            grupo = varias.binarioAdecimal(grupo);
+            arrayOctal[indiceOctal] = grupo;
+            indiceOctal++;
+            indice = indice - 3;
+       }
+              
+       if((indice < 3) && (indice >= 0)) {
+            grupo = 0;
+            for(int i = 0; i <= indice; i++) {
+                grupo = grupo * 10 + x[i]; 
+            }
+            grupo = varias.binarioAdecimal(grupo);
+            arrayOctal[indiceOctal] = grupo;
+            indiceOctal++;
+            indice = indice - 3;
+        }
+       Arrays.volteaArrayInt(arrayOctal);
+        return arrayOctal;
+
+    }
+    
+    /**
+    * Pasa de binario a hexadecimal.
+    *
+    * @param x String de número
+    * @return array hexadecimal
+    */
+    //Pasa de binario a heradecimal/////////////////////////////////////////
+    public static String[] binarioAhexadecimal(int[] x) {
+
+        //Crea el array para el hexadecimal
+        int longitud = x.length;
+        while ((longitud%4 != 0)) {
+            longitud++;
+        }
+        longitud = longitud / 4;
+        String[] arrayHexadecimal = new String[longitud];  
+        
+        
+       //Forma los grupos
+       int indice = x.length - 1;
+       int grupo = 0;
+       int octal = 0;
+       boolean esCero = false;
+       int indiceHexadecimal = 0;
+       
+       while(indice >= 4) {
+            grupo = 0;
+            for(int i = indice - 3; i <= indice; i++) {            
+                grupo = grupo * 10 + x[i]; 
+            }
+            grupo = varias.binarioAdecimal(grupo);
+            if(grupo >= 10) {
+                if(grupo == 10) {
+                    arrayHexadecimal[indiceHexadecimal] = "A";
+                }
+                if(grupo == 11) {
+                    arrayHexadecimal[indiceHexadecimal] = "B";
+                }
+                if(grupo == 12) {
+                    arrayHexadecimal[indiceHexadecimal] = "C";
+                }
+                if(grupo == 13) {
+                    arrayHexadecimal[indiceHexadecimal] = "D";
+                }
+                if(grupo == 14) {
+                    arrayHexadecimal[indiceHexadecimal] = "E";
+                }
+                if(grupo == 15) {
+                    arrayHexadecimal[indiceHexadecimal] = "F";
+                }
+            } else {
+                arrayHexadecimal[indiceHexadecimal] = Integer.toString(grupo);
+            }
+            indice = indice - 4;
+            indiceHexadecimal++;
+       }
+              
+       if((indice < 4) && (indice >= 0)) {
+            grupo = 0;
+            for(int i = 0; i <= indice; i++) {
+                grupo = grupo * 10 + x[i]; 
+            }
+            grupo = varias.binarioAdecimal(grupo);
+            if(grupo >= 10) {
+                if(grupo == 10) {
+                    arrayHexadecimal[indiceHexadecimal] = "A";
+                }
+                if(grupo == 11) {
+                    arrayHexadecimal[indiceHexadecimal] = "B";
+                }
+                if(grupo == 12) {
+                    arrayHexadecimal[indiceHexadecimal] = "C";
+                }
+                if(grupo == 13) {
+                    arrayHexadecimal[indiceHexadecimal] = "D";
+                }
+                if(grupo == 14) {
+                    arrayHexadecimal[indiceHexadecimal] = "E";
+                }
+                if(grupo == 15) {
+                    arrayHexadecimal[indiceHexadecimal] = "F";
+                }
+            } else {
+                arrayHexadecimal[indiceHexadecimal] = Integer.toString(grupo);
+            }
+            indice = indice - 4;
+            indiceHexadecimal++;
+        }
+       
+       Arrays.volteaArrayString(arrayHexadecimal);
+        return arrayHexadecimal;
+    }
+      
+    /**
+    * transforma int en array
+    *
+    * @param x int de número
+    * @return array 
+    */
+    //Pasa int a array/////////////////////////////////////////
+    public static int[] intAarray(int x) {
+        int longitud = varias.cuentaDigitos(x);
+        int[] array = new int[longitud];
+        int indice = 0;
+        while(longitud>0) {
+            array[indice] = varias.digitoN(x, indice);
+            longitud--;
+            indice++;
+        }
+        return array;
+    }
+    
 }
+
+
